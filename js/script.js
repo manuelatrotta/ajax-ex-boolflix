@@ -17,17 +17,19 @@
 //            "overview": "Cobb, a skilled thief who commits corporate espionage by infiltrating the subconscious of his targets is offered a chance to regain his old life as payment for a task considered to be impossible: \"inception\", the implantation of another person's idea into a target's subconscious.",
 //            "release_date": "2010-07-15"
 //        },
-
+//risultati in base alla ricerca al click del bottone
 $(document).ready(function() {
   //variabile di richiesta che deve essere poi data dall'input
-  var query = 'inception';
+  //var query = 'inception';
+  $("button").click(function () {
+    var search = $('input').val();
 
   $.ajax({
     url:'https://api.themoviedb.org/3/search/movie',
     method:'GET',
     data:{
       api_key: '535029b12126fd0395272f6e0b4b8764',
-      query: query,
+      query: search,
     },
     success: function(data) {
       var films = data.results;
@@ -38,6 +40,7 @@ $(document).ready(function() {
     error:function(request, state, errors) {
       console.log(errors);
     }
+  });
   });
 });
 
@@ -51,7 +54,7 @@ function printFilms (films) {
   for (var i = 0; i < films.length; i++) {
     var thisFilm = films[i];
     console.log(thisFilm);
-//in context inserisco gli attributi che voglio stampare nel template 
+//in context inserisco gli attributi che voglio stampare nel template
     var context = {
       title: thisFilm.title,
       original_title: thisFilm.original_title,
