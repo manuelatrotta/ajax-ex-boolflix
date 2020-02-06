@@ -27,16 +27,37 @@ $(document).ready(function() {
     method:'GET',
     data:{
       api_key: '535029b12126fd0395272f6e0b4b8764',
-      query: query
+      query: query,
     },
     success: function(data) {
       var films = data.results;
-      //stampa tutti i risultati ottenuti 
-      console.log(films);
+      //stampa tutti i risultati ottenuti
+    //  console.log(films);
+    printFilms(films);
     },
     error:function(request, state, errors) {
       console.log(errors);
     }
   });
-
 });
+
+//functions
+//funzione che stampa i risultati ottenuti
+function printFilms (films) {
+  var source = $("#film-template").html();
+  var template = Handlebars.compile(source);
+
+//con un ciclo for vediamo tutte le caratteristiche del film (i)
+  for (var i = 0; i < films.length; i++) {
+    var thisFilm = films[i];
+    console.log(thisFilm);
+//in context inserisco gli attributi che voglio stampare nel template 
+    var context = {
+      title: thisFilm.title,
+      original_title: thisFilm.original_title,
+      vote_average: thisFilm.vote_average
+    };
+    var html = template(context);
+    $('.list-films').append(html);
+  }
+}
