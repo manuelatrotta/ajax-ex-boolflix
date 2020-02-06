@@ -2,12 +2,24 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <!--j-query-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!--handlebars-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.2/handlebars.js" integrity="sha256-N5vR06TQIR+YD8oS0yndB1pu/EITeijW52dwezEq7/g=" crossorigin="anonymous"></script>
+    <!--mystylecss-->
     <link rel="stylesheet" href="css/style.css">
     <title></title>
   </head>
   <body>
+  <ul class="films">
+
+  </ul>
+  <!--handlebars-template con attributi richiesti da stampare-->
+  <script id="entry-template" type="text/x-handlebars-template">
+  <li class="entry"> {{title}} - {{original_title}} - {{vote_average}} - {{original-language}}
+  </li>
+</script>
+
 
   <script src="js/script.js" charset="utf-8"></script>
   </body>
