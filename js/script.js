@@ -19,15 +19,24 @@
 //        },
 
 $(document).ready(function() {
-  //variabile di richiesta che deve essere poi data dall'input 
+  //variabile di richiesta che deve essere poi data dall'input
   var query = 'inception';
 
   $.ajax({
     url:'https://api.themoviedb.org/3/search/movie',
     method:'GET',
-    data:,
-    success:,
-    error:,
+    data:{
+      api_key: '535029b12126fd0395272f6e0b4b8764',
+      query: query
+    },
+    success: function(data) {
+      var films = data.results;
+      //stampa tutti i risultati ottenuti 
+      console.log(films);
+    },
+    error:function(request, state, errors) {
+      console.log(errors);
+    }
   });
 
 });
