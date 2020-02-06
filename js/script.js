@@ -30,6 +30,7 @@ $(document).ready(function() {
     data:{
       api_key: '535029b12126fd0395272f6e0b4b8764',
       query: search,
+      language: 'it-IT'
     },
     success: function(data) {
       var films = data.results;
@@ -58,7 +59,8 @@ function printFilms (films) {
     var context = {
       title: thisFilm.title,
       original_title: thisFilm.original_title,
-      vote_average: thisFilm.vote_average
+      original_language : thisFilm.original_language,
+      vote_average: thisFilm.vote_average,
     };
     var html = template(context);
     $('.list-films').append(html);
