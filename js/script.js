@@ -34,9 +34,14 @@ $(document).ready(function() {
     },
     success: function(data) {
       var films = data.results;
+//se non si ha riscontro con la ricerca quindi la lunghezza di film è uguale a zero manda alert non trovato
+        if (films.length == 0) {
+          alert('no found');
+        }else{
       //stampa tutti i risultati ottenuti
     //  console.log(films);
-    printFilms(films);
+      printFilms(films);
+      }
     },
     error:function(request, state, errors) {
       console.log(errors);
