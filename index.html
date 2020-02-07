@@ -20,7 +20,14 @@
   </ul>
   <!--handlebars-template con attributi richiesti da stampare-->
   <script id="film-template" type="text/x-handlebars-template">
-  <li> {{title}} - {{original_title}} - {{original_language}} - {{vote_average}}</li>
+  <li>
+    {{title}}
+    <ul>
+      <li> Original title:  {{original_title}} </li>
+      <li> Original language:  {{original_language}} - </li>
+      <li> Vote:   {{vote_average}} </li>
+    </ul>
+  </li>
 </script>
 
 

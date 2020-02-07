@@ -28,6 +28,8 @@ $(document).ready(function() {
   });
 });
 
+//functions--------------
+
 //funzione per resettare la ricerca
 
 function resetSearch() {
@@ -66,7 +68,6 @@ function getMovie(string) {
   });
 }
 
-//functions
 //funzione che stampa i risultati ottenuti
 function printFilms (films) {
   var source = $("#film-template").html();
