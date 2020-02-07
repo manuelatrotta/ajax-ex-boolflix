@@ -22,14 +22,31 @@ $(document).ready(function() {
   //variabile di richiesta che deve essere poi data dall'input
   //var query = 'inception';
   $("button").click(function () {
-    var search = $('input').val();
+    var search = $('#search').val();
+    resetSearch();
+    getMovie(search);
+  });
+});
+
+//funzione per resettare la ricerca
+
+function resetSearch() {
+  $('.covers').html("");
+  $('#search').val("");
+}
+
+//funzione chiamata ricerca film
+function getMovie(string) {
+
+  var api_key = '535029b12126fd0395272f6e0b4b8764';
+  var url = 'https://api.themoviedb.org/3/search/movie';
 
   $.ajax({
-    url:'https://api.themoviedb.org/3/search/movie',
+    url: url,
     method:'GET',
     data:{
-      api_key: '535029b12126fd0395272f6e0b4b8764',
-      query: search,
+      api_key: api_key,
+      query: string,
       language: 'it-IT'
     },
     success: function(data) {
@@ -47,8 +64,7 @@ $(document).ready(function() {
       console.log(errors);
     }
   });
-  });
-});
+}
 
 //functions
 //funzione che stampa i risultati ottenuti
