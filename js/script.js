@@ -31,8 +31,8 @@ $(document).ready(function() {
 //funzione per resettare la ricerca
 
 function resetSearch() {
-  $('.covers').html("");
-  $('#search').val("");
+  $('.list-films').html(" ");
+  $('#search').val(" ");
 }
 
 //funzione chiamata ricerca film
