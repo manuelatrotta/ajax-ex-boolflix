@@ -36,6 +36,14 @@ function resetSearch() {
   $('.list-films').html(" ");
   $('#search').val(" ");
 }
+//funzione per messaggio di non risultati
+function sendMessageNoResult() {
+  var source = $("#noresult-template").html();
+  var template = Handlebars.compile(source);
+  var html = template();
+  $('.list-films').append(html);
+}
+
 
 //funzione chiamata ricerca film
 function getMovie(string) {
@@ -52,14 +60,14 @@ function getMovie(string) {
       language: 'it-IT'
     },
     success: function(data) {
-      var films = data.results;
-//se non si ha riscontro con la ricerca quindi la lunghezza di film è uguale a zero manda alert non trovato
-        if (films.length == 0) {
-          alert('no found');
+//se  si ha riscontro con la ricerca quindi il total result è > 0 si stampano i risultati richiamando la funzione printFilms
+        if (data.total_results > 0) {
+          var films = data.results;
+          printFilms(films);
+//se non si ha riscontro con la ricerca quindi il total result è uguale a 0 si manda un messaggio all'utente
         }else{
-      //stampa tutti i risultati ottenuti
-    //  console.log(films);
-      printFilms(films);
+          resetSearch();
+          sendMessageNoResult();
       }
     },
     error:function(request, state, errors) {
