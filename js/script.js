@@ -93,11 +93,25 @@ function printFilms (films) {
       original_title: thisFilm.original_title,
       original_language : thisFilm.original_language,
       vote_average: thisFilm.vote_average,
-      star : Math.round(thisFilm.vote_average / 2),
+      specialChars : printStars(thisFilm.vote_average)
     };
     var html = template(context);
     $('.list-films').append(html);
   }
+}
+
+function printStars(vote) {
+  var vote = Math.round(vote / 2);
+  var stars = '';
+  for(var i=1; i<=5; i++) {
+    if(i <=vote) {
+      var singleStar = '<i class="fas fa-star"></i>';
+    }else {
+      var singleStar = '<i class="far fa-star"></i>';
+    }
+    stars = stars + singleStar;
+  }
+  return stars;
 }
 
 
