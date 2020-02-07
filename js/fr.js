@@ -82,18 +82,18 @@ function getMovie(string) {
 function printFilms (films) {
   var source = $("#film-template").html();
   var template = Handlebars.compile(source);
-
 //con un ciclo for vediamo tutte le caratteristiche del film (i)
   for (var i = 0; i < films.length; i++) {
     var thisFilm = films[i];
     console.log(thisFilm);
 //in context inserisco gli attributi che voglio stampare nel template
+  var flag = thisFilm.original_language;
     var context = {
       title: thisFilm.title,
       original_title: thisFilm.original_title,
-      original_language : thisFilm.original_language,
+      original_language : 'img/' + flag + '.png',
       vote_average: thisFilm.vote_average,
-      specialChars : printStars(thisFilm.vote_average)
+      specialChars : printStars(thisFilm.vote_average),
     };
     var html = template(context);
     $('.list-films').append(html);
