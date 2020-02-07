@@ -92,15 +92,20 @@ function printFilms (films) {
       title: thisFilm.title,
       original_title: thisFilm.original_title,
       original_language : thisFilm.original_language,
-      vote_average: thisFilm.vote,
+      vote_average: thisFilm.vote_average,
+      star : Math.round(thisFilm.vote_average / 2),
     };
     var html = template(context);
     $('.list-films').append(html);
   }
 }
 
+
+
 //Trasformiamo il voto da 1 a 10 decimale in un numero intero da 1 a 5, così da permetterci di stampare a schermo un numero di stelle piene che vanno da 1 a 5, lasciando le restanti vuote (troviamo le icone in FontAwesome).Arrotondiamo sempre per eccesso all’unità successiva, non gestiamo icone mezze piene (o mezze vuote :P)
 //bisogna confrontare il voto.data e ricondurlo ad un valore da 1 a 5 in cui 1 è una stellina, 5 è il massimo
 
-var starVote = Math.round( vote / 2);
-console.log(starVote);
+//var starVote = Math.round( vote / 2);
+//console.log(starVote);
+//var fullVote = <i class="fas fa-star"></i>;
+//var emptyVote = <i class="far fa-star"></i>;
