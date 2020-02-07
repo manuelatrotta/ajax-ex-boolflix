@@ -13,10 +13,13 @@
 //    "total_pages": 1,
 //    "results": [
 //      {"title": "Inception",
-//            "vote_average": 8.3,
-//            "overview": "Cobb, a skilled thief who commits corporate espionage by infiltrating the subconscious of his targets is offered a chance to regain his old life as payment for a task considered to be impossible: \"inception\", the implantation of another person's idea into a target's subconscious.",
-//            "release_date": "2010-07-15"
+//        "vote_average":8.7,
+//      "overview": "Cobb, a skilled thief who commits corporate espionage by infiltrating the subconscious of his targets is offered a chance to regain his old life as payment for a task considered to be impossible: \"inception\", the implantation of another person's idea into a target's subconscious.",
+//       "release_date": "2010-07-15"
 //        },
+
+
+
 //risultati in base alla ricerca al click del bottone
 $(document).ready(function() {
   //variabile di richiesta che deve essere poi data dall'input
@@ -43,7 +46,6 @@ function sendMessageNoResult() {
   var html = template();
   $('.list-films').append(html);
 }
-
 
 //funzione chiamata ricerca film
 function getMovie(string) {
@@ -90,9 +92,15 @@ function printFilms (films) {
       title: thisFilm.title,
       original_title: thisFilm.original_title,
       original_language : thisFilm.original_language,
-      vote_average: thisFilm.vote_average,
+      vote_average: thisFilm.vote,
     };
     var html = template(context);
     $('.list-films').append(html);
   }
 }
+
+//Trasformiamo il voto da 1 a 10 decimale in un numero intero da 1 a 5, così da permetterci di stampare a schermo un numero di stelle piene che vanno da 1 a 5, lasciando le restanti vuote (troviamo le icone in FontAwesome).Arrotondiamo sempre per eccesso all’unità successiva, non gestiamo icone mezze piene (o mezze vuote :P)
+//bisogna confrontare il voto.data e ricondurlo ad un valore da 1 a 5 in cui 1 è una stellina, 5 è il massimo
+
+var starVote = Math.round( vote / 2);
+console.log(starVote);
