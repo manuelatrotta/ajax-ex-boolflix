@@ -86,7 +86,7 @@ function getMovie(string) {
     },
     success: function (data) {
       if (data.total_results > 0) {
-        var telefilms = data.results;
+        var telefilm = data.results;
         printTelefilms(telefilm);
       }else{
         resetSearch();
@@ -128,12 +128,12 @@ function printTelefilms(telefilm) {
   var template = Handlebars.compile(source);
   for (var i = 0; i < telefilm.length; i++) {
      var thisTelefilm = telefilm[i];
-
+     var flag = thisTelefilm.original_language;
      var context = {
-       name: thisTelefilm.name,
-       original_name: thisTelefilm.original_name,
-       original_language:'img/flag-of-' + thisTelefilm.original_language + '.png',
-       vote_average: printStars(thisTelefilm.vote_average)
+      name: thisTelefilm.name,
+      original_name: thisTelefilm.original_name,
+      original_language : 'img/' + flag + '.png',
+      vote_average: printStars(thisTelefilm.vote_average)
      };
      var html = template(context);
      $('.list-films').append(html);
