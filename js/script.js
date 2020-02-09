@@ -1,4 +1,4 @@
-//535029b12126fd0395272f6e0b4b8764
+//personal api_key:535029b12126fd0395272f6e0b4b8764
 
 //Creare un layout base con una searchbar (una input e un button) in cui possiamo scrivere completamente o parzialmente il nome di un film. Possiamo, cliccando il  bottone, cercare sull’API tutti i film che contengono ciò che ha scritto l’utente.Vogliamo dopo la risposta dell’API visualizzare a schermo i seguenti valori per ogni film trovato:
 //Titolo
@@ -51,10 +51,10 @@ function sendMessageNoResult() {
 function getMovie(string) {
 
   var api_key = '535029b12126fd0395272f6e0b4b8764';
-  var url = 'https://api.themoviedb.org/3/search/movie';
+  var url_movies = 'https://api.themoviedb.org/3/search/movie';
 
   $.ajax({
-    url: url,
+    url: url_movies,
     method:'GET',
     data:{
       api_key: api_key,
@@ -76,7 +76,29 @@ function getMovie(string) {
       console.log(errors);
     }
   });
-}
+  $.ajax({
+    url: 'https://api.themoviedb.org/3/search/tv',
+    method: 'GET',
+    data: {
+      api_key: '535029b12126fd0395272f6e0b4b8764',
+      query: string,
+      language: 'it-IT'
+    },
+    success: function (data) {
+      if (data.total_results > 0) {
+        var telefilms = data.results;
+        printTelefilms(telefilm);
+      }else{
+        resetSearch();
+        sendMessageNoResult();
+      }
+    },
+    error: function (request, state, errors) {
+      console.log(errors);
+    }
+  }
+  );
+  }
 
 //funzione che stampa i risultati ottenuti
 function printFilms (films) {
@@ -99,8 +121,27 @@ function printFilms (films) {
     $('.list-films').append(html);
   }
 }
+//funzione che stampa i risultati dei telefilms
+function printTelefilms(telefilm) {
+  $('.list-films').html('');
+  var source = $("#telefilm-template").html();
+  var template = Handlebars.compile(source);
+  for (var i = 0; i < telefilm.length; i++) {
+     var thisTelefilm = telefilm[i];
 
+     var context = {
+       name: thisTelefilm.name,
+       original_name: thisTelefilm.original_name,
+       original_language:'img/flag-of-' + thisTelefilm.original_language + '.png',
+       vote_average: printStars(thisTelefilm.vote_average)
+     };
+     var html = template(context);
+     $('.list-films').append(html);
+  }
+}
+//funzione che correla il voto in scala da 1 a 5 con le stelle.
 function printStars(vote) {
+  //voto arrotondato con .round e diviso 2 per scala ridotta
   var vote = Math.round(vote / 2);
   var stars = '';
   for(var i=1; i<=5; i++) {
@@ -113,13 +154,3 @@ function printStars(vote) {
   }
   return stars;
 }
-
-
-
-//Trasformiamo il voto da 1 a 10 decimale in un numero intero da 1 a 5, così da permetterci di stampare a schermo un numero di stelle piene che vanno da 1 a 5, lasciando le restanti vuote (troviamo le icone in FontAwesome).Arrotondiamo sempre per eccesso all’unità successiva, non gestiamo icone mezze piene (o mezze vuote :P)
-//bisogna confrontare il voto.data e ricondurlo ad un valore da 1 a 5 in cui 1 è una stellina, 5 è il massimo
-
-//var starVote = Math.round( vote / 2);
-//console.log(starVote);
-//var fullVote = <i class="fas fa-star"></i>;
-//var emptyVote = <i class="far fa-star"></i>;
