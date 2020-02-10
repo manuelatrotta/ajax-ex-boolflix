@@ -27,7 +27,8 @@ $(document).ready(function() {
   $("button").click(function () {
     var search = $('#search').val();
     resetSearch();
-    getMovie(search);
+    getResult(search);
+
   });
 });
 
@@ -36,7 +37,8 @@ $(document).ready(function() {
 //funzione per resettare la ricerca
 
 function resetSearch() {
-  $('.list-films').html(" ");
+  $('.list-films').html('');
+  $('.list-telefilms').html('');
   $('#search').val(" ");
 }
 //funzione per messaggio di non risultati
@@ -48,7 +50,7 @@ function sendMessageNoResult() {
 }
 
 //funzione chiamata ricerca film
-function getMovie(string) {
+function getResult(string) {
 
   var api_key = '535029b12126fd0395272f6e0b4b8764';
   var url_movies = 'https://api.themoviedb.org/3/search/movie';
@@ -66,11 +68,11 @@ function getMovie(string) {
 //se  si ha riscontro con la ricerca quindi il total result è > 0 si stampano i risultati richiamando la funzione printFilms
         if (data.total_results > 0) {
           var films = data.results;
-          printFilms(films);
+          printResults('films', films);
 //se non si ha riscontro con la ricerca quindi il total result è uguale a 0 si manda un messaggio all'utente
         }else{
           resetSearch();
-          sendMessageNoResult();
+          sendMessageNoResult($('list-films'));
       }
     },
     error:function(request, state, errors) {
@@ -87,11 +89,11 @@ function getMovie(string) {
     },
     success: function (data) {
       if (data.total_results > 0) {
-        var telefilm = data.results;
-        printTelefilms(telefilm);
+        var tvs = data.results;
+        printResults('tvs',tvs);
       }else{
         resetSearch();
-        sendMessageNoResult();
+        sendMessageNoResult($('.list-telefilms'));
       }
     },
     error: function (request, state, errors) {
@@ -101,47 +103,42 @@ function getMovie(string) {
   );
   }
 
-//funzione che stampa i risultati ottenuti
-function printFilms (films) {
+//funzione che stampa i risultati ottenuti sia dei film che dei telefilm
+function printResults (type, results) {
   var source = $("#film-template").html();
   var template = Handlebars.compile(source);
+  var title;
+  var originalTitle;
 //con un ciclo for vediamo tutte le caratteristiche del film (i)
-  for (var i = 0; i < films.length; i++) {
-    var thisFilm = films[i];
-    console.log(thisFilm);
+  for (var i = 0; i < results.length; i++) {
+    var thisResult = results[i];
+    console.log(thisResult);
+    if(type == 'films') {
+      originalTitle = thisResult.original_title;
+      title = thisResult.title;
+      var container = $('.list-films');
+    } else if (type == 'telefilms'){
+      originalTitle = thisResult.original_name;
+      title = thisResult.name;
+        var container = $('.list-telefilms');
+    }
+
 //in context inserisco gli attributi che voglio stampare nel template
-  var flag = thisFilm.original_language;
+  var flag = thisResult.original_language;
     var context = {
-      title: thisFilm.title,
-      original_title: thisFilm.original_title,
+      type: type,
+      title: title,
+      original_title: originalTitle,
       original_language : 'img/' + flag + '.png',
-      vote_average: thisFilm.vote_average,
-      specialChars : printStars(thisFilm.vote_average),
-      poster_path:thisFilm.poster_path
+      vote_average: thisResult.vote_average,
+      specialChars : printStars(thisResult.vote_average),
+      poster_path:thisResult.poster_path
     };
     var html = template(context);
-    $('.list-films').append(html);
+    container.append(html);
   }
 }
-//funzione che stampa i risultati dei telefilms
-function printTelefilms(telefilm) {
-  $('.list-films').html('');
-  var source = $("#telefilm-template").html();
-  var template = Handlebars.compile(source);
-  for (var i = 0; i < telefilm.length; i++) {
-     var thisTelefilm = telefilm[i];
-     var flag = thisTelefilm.original_language;
-     var context = {
-      name: thisTelefilm.name,
-      original_name: thisTelefilm.original_name,
-      original_language : 'img/' + flag + '.png',
-      specialChars: printStars(thisTelefilm.vote_average),
-      poster_path: thisTelefilm.poster_path
-     };
-     var html = template(context);
-     $('.list-films').append(html);
-  }
-}
+
 //funzione che correla il voto in scala da 1 a 5 con le stelle.
 function printStars(vote) {
   //voto arrotondato con .round e diviso 2 per scala ridotta

@@ -20,11 +20,16 @@
   <ul class="list-films">
 
   </ul>
+
+  <ul class="list-telefilms">
+
+  </ul>
   <!--handlebars-template con attributi richiesti da stampare-->
   <script id="film-template" type="text/x-handlebars-template">
   <li>
     {{title}}
     <ul>
+      <li>{{type}}</li>
       <li> Original title:  {{original_title}} </li>
         <li> image film:  <img src=" https://image.tmdb.org/t/p/w185{{poster_path}}" alt=""> </li>
       <li> Original language:  <img src=" {{original_language}}" alt=""> </li>
@@ -34,18 +39,6 @@
   </li>
 </script>
 
-<script id="telefilm-template" type="text/x-handlebars-template">
-<li>
-Telefilms 's list: {{name}}
-  <ul>
-    <li> Original title Serietv:  {{original_name}} </li>
-    <li> image Serietv:  <img src=" https://image.tmdb.org/t/p/w185{{poster_path}}" alt=""> </li>
-    <li> Original language:  <img src=" {{original_language}}" alt=""> </li>
-    <li> Vote:   {{vote_average}} </li>
-    <li> specialChars: {{{specialChars}}} </li>
-  </ul>
-</li>
-</script>
 
 <script id="noresult-template" type="text/x-handlebars-template">
 <li> We are sorry, your search has no results</li>
