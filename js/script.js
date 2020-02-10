@@ -52,6 +52,7 @@ function getMovie(string) {
 
   var api_key = '535029b12126fd0395272f6e0b4b8764';
   var url_movies = 'https://api.themoviedb.org/3/search/movie';
+  var url_telefilm = 'https://api.themoviedb.org/3/search/tv';
 
   $.ajax({
     url: url_movies,
@@ -77,10 +78,10 @@ function getMovie(string) {
     }
   });
   $.ajax({
-    url: 'https://api.themoviedb.org/3/search/tv',
+    url: url_telefilm,
     method: 'GET',
     data: {
-      api_key: '535029b12126fd0395272f6e0b4b8764',
+      api_key: api_key,
       query: string,
       language: 'it-IT'
     },
@@ -135,7 +136,7 @@ function printTelefilms(telefilm) {
       original_name: thisTelefilm.original_name,
       original_language : 'img/' + flag + '.png',
       specialChars: printStars(thisTelefilm.vote_average),
-      poster_path:thisTelefilm.poster_path
+      poster_path: thisTelefilm.poster_path
      };
      var html = template(context);
      $('.list-films').append(html);
