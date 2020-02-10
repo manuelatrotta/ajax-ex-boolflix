@@ -27,7 +27,8 @@ $(document).ready(function() {
   $("button").click(function () {
     var search = $('#search').val();
     resetSearch();
-    getResult(search);
+    getFilms(search);
+    getTelefilms(search);
 
   });
 });
@@ -50,7 +51,7 @@ function sendMessageNoResult() {
 }
 
 //funzione chiamata ricerca film
-function getResult(string) {
+function getFilms(string) {
 
   var api_key = '535029b12126fd0395272f6e0b4b8764';
   var url_movies = 'https://api.themoviedb.org/3/search/movie';
@@ -71,7 +72,6 @@ function getResult(string) {
           printResults('films', films);
 //se non si ha riscontro con la ricerca quindi il total result è uguale a 0 si manda un messaggio all'utente
         }else{
-          resetSearch();
           sendMessageNoResult($('list-films'));
       }
     },
@@ -79,6 +79,12 @@ function getResult(string) {
       console.log(errors);
     }
   });
+}
+  function getTelefilms(string) {
+
+    var api_key = '535029b12126fd0395272f6e0b4b8764';
+    var url_telefilm = 'https://api.themoviedb.org/3/search/tv';
+
   $.ajax({
     url: url_telefilm,
     method: 'GET',
@@ -89,20 +95,17 @@ function getResult(string) {
     },
     success: function (data) {
       if (data.total_results > 0) {
-        var tvs = data.results;
-        printResults('tvs',tvs);
+        var telefilms = data.results;
+        printResults('telefilms',telefilms);
       }else{
-        resetSearch();
         sendMessageNoResult($('.list-telefilms'));
       }
     },
     error: function (request, state, errors) {
       console.log(errors);
     }
-  }
-  );
-  }
-
+  });
+}
 //funzione che stampa i risultati ottenuti sia dei film che dei telefilm
 function printResults (type, results) {
   var source = $("#film-template").html();
