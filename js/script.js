@@ -133,7 +133,7 @@ function printTelefilms(telefilm) {
       name: thisTelefilm.name,
       original_name: thisTelefilm.original_name,
       original_language : 'img/' + flag + '.png',
-      vote_average: printStars(thisTelefilm.vote_average)
+      specialChars: printStars(thisTelefilm.vote_average),
      };
      var html = template(context);
      $('.list-films').append(html);
