@@ -116,6 +116,7 @@ function printFilms (films) {
       original_language : 'img/' + flag + '.png',
       vote_average: thisFilm.vote_average,
       specialChars : printStars(thisFilm.vote_average),
+      poster_path:thisFilm.poster_path
     };
     var html = template(context);
     $('.list-films').append(html);
@@ -134,6 +135,7 @@ function printTelefilms(telefilm) {
       original_name: thisTelefilm.original_name,
       original_language : 'img/' + flag + '.png',
       specialChars: printStars(thisTelefilm.vote_average),
+      poster_path:thisTelefilm.poster_path
      };
      var html = template(context);
      $('.list-films').append(html);
