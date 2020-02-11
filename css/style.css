@@ -50,5 +50,13 @@ button{
 }
 
 .card-movie{
+  justify-content: space-around;
+  flex-direction: row;
+  flex-wrap: wrap;
 
+}
+.flag{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
 }
