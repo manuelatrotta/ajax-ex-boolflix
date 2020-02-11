@@ -62,6 +62,7 @@ button{
 }
 
 .poster{
+  position: relative;
   width: 187px;
   height: 280px;
   border: 1px solid red;
@@ -76,4 +77,28 @@ button{
   text-align: center;
   font-weight: bold;
   color: red;
+}
+
+.card-movie{
+  position: absolute;
+  display: none;
+  width: 187px;
+  height: 280px;
+  background-color: lightgrey;
+  font-size: 15px;
+}
+
+.container:hover .card-movie{
+  display: block;
+}
+.container:hover .type{
+  display: none;
+}
+
+.overview{
+  overflow: hidden;
+}
+
+.list-card{
+  list-style: none;
 }

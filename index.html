@@ -26,21 +26,20 @@
       <ul class="list-films"> </ul>
 <!--handlebars-template con attributi richiesti da stampare-->
       <ul class="list-telefilms"></ul>
-        <div class="container">
-          <script id="film-template" type="text/x-handlebars-template">
-        <div class="poster"> <img src=" https://image.tmdb.org/t/p/w185{{poster_path}}" alt=""></div>
-         <div class="type"> {{type}} </div>
-        <div class="card-movie">
-          <ul>
+        <script id="film-template" type="text/x-handlebars-template">
+          <div class="container">
+          <div class="poster"> <img src=" https://image.tmdb.org/t/p/w185{{poster_path}}" alt=""></div>
+           <div class="type"> {{type}} </div>
+          <div class="card-movie">
+          <ul class="list-card">
             <li> title:   {{title}} </li>
             <li> Original title:  {{original_title}} </li>
             <li> Original language:  <img class="flag" src=" {{original_language}}" alt=""> </li>
             <li> Vote:   {{vote_average}} </li>
             <li> specialChars: {{{specialChars}}} </li>
-            <li> overview: {{overview}} </li>
+            <li class="overview"> overview: {{overview}} </li>
           </ul>
-        </li>
-        </div>
+          </div>
     </script>
 
 
