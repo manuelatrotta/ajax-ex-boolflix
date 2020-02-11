@@ -60,3 +60,11 @@ button{
   height: 30px;
   border-radius: 50%;
 }
+
+.poster{
+  width: 187px;
+  height: 280px;
+  border: 1px solid red;
+  background-image: url(../img/image_deafault.png);
+  background-size: cover;
+  background-repeat: no-repeat;
