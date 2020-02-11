@@ -39,7 +39,9 @@ button{
   color: red;
   text-transform: uppercase;
 }
+.wrapper{
 
+}
 .container{
   display: flex;
   justify-content: space-around;
@@ -49,7 +51,8 @@ button{
   margin: auto;
   padding: 20px;
 }
-.list-films{
+.list-films,
+.list-telefilms{
   display: flex;
   margin: 10px;
 
@@ -61,8 +64,8 @@ button{
 
 }
 .flag{
-  width: 30px;
-  height: 30px;
+  width: 15px;
+  height: 15px;
   border-radius: 50%;
 }
 
@@ -90,7 +93,7 @@ button{
   width: 187px;
   height: 280px;
   background-color: lightgrey;
-  font-size: 15px;
+  font-size: 12px;
 }
 
 .container:hover .card-movie{
@@ -100,10 +103,7 @@ button{
   display: none;
 }
 
-.overview{
-  overflow: hidden;
-}
-
 .list-card{
   list-style: none;
+    overflow: hidden;
 }
