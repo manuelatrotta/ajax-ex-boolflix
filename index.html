@@ -31,14 +31,15 @@
       <ul class="list-telefilms"></ul>
       <script id="film-template" type="text/x-handlebars-template">
         <div class="card-movie">
-          {{title}}
           <ul>
+            <li> title:   {{title}} </li>
             <li> image film:  <img src=" https://image.tmdb.org/t/p/w185{{poster_path}}" alt=""> </li>
             <li>{{type}}</li>
             <li> Original title:  {{original_title}} </li>
             <li> Original language:  <img src=" {{original_language}}" alt=""> </li>
             <li> Vote:   {{vote_average}} </li>
             <li> specialChars: {{{specialChars}}} </li>
+            <li> overview: {{overview}} </li>
           </ul>
         </li>
         </div>

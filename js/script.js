@@ -127,7 +127,8 @@ function printResults (type, results) {
       original_language : 'img/' + flag + '.png',
       vote_average: thisResult.vote_average,
       specialChars : printStars(thisResult.vote_average),
-      poster_path:thisResult.poster_path
+      poster_path:thisResult.poster_path,
+      overview: thisResult.overview
     };
     var html = template(context);
     container.append(html);
