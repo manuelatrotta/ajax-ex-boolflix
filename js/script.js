@@ -26,9 +26,7 @@ $(document).ready(function() {
   //var query = 'inception';
   $("button").click(function () {
     var search = $('#search').val();
-    resetSearch();
-    getFilms(search);
-    getTelefilms(search);
+    query();
 
   });
 });
@@ -49,16 +47,29 @@ function sendMessageNoResult() {
   var html = template();
   $('.list-films').append(html);
 }
-
-//funzione chiamata ricerca film
-function getFilms(string) {
+//funzione ricerca telefilms e films
+function query() {
+  var search = $('#search').val();
+  resetSearch();
 
   var api_key = '535029b12126fd0395272f6e0b4b8764';
+
   var url_movies = 'https://api.themoviedb.org/3/search/movie';
-  var url_telefilm = 'https://api.themoviedb.org/3/search/tv';
+  var url_telefilms = 'https://api.themoviedb.org/3/search/tv';
+
+  var typeFilms = 'films';
+  var typeTelefilms = 'telefilms';
+
+  getData(search, api_key, url_movies, typeFilms, '.list-films');
+  getData(search, api_key, url_telefilms, typeTelefilms, '.list-telefilms');
+}
+
+
+//funzione chiamata ricerca film
+function getData(string, api_key, url, type, container) {
 
   $.ajax({
-    url: url_movies,
+    url: url,
     method:'GET',
     data:{
       api_key: api_key,
@@ -68,11 +79,11 @@ function getFilms(string) {
     success: function(data) {
 //se  si ha riscontro con la ricerca quindi il total result è > 0 si stampano i risultati richiamando la funzione printFilms
         if (data.total_results > 0) {
-          var films = data.results;
-          printResults('films', films);
+          var results = data.results;
+          printResults(type, results);
 //se non si ha riscontro con la ricerca quindi il total result è uguale a 0 si manda un messaggio all'utente
         }else{
-          sendMessageNoResult($('list-films'));
+          sendMessageNoResult($(container));
       }
     },
     error:function(request, state, errors) {
@@ -80,32 +91,7 @@ function getFilms(string) {
     }
   });
 }
-  function getTelefilms(string) {
 
-    var api_key = '535029b12126fd0395272f6e0b4b8764';
-    var url_telefilm = 'https://api.themoviedb.org/3/search/tv';
-
-  $.ajax({
-    url: url_telefilm,
-    method: 'GET',
-    data: {
-      api_key: api_key,
-      query: string,
-      language: 'it-IT'
-    },
-    success: function (data) {
-      if (data.total_results > 0) {
-        var telefilms = data.results;
-        printResults('telefilms',telefilms);
-      }else{
-        sendMessageNoResult($('.list-telefilms'));
-      }
-    },
-    error: function (request, state, errors) {
-      console.log(errors);
-    }
-  });
-}
 //funzione che stampa i risultati ottenuti sia dei film che dei telefilm
 function printResults (type, results) {
   var source = $("#film-template").html();
