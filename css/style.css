@@ -3,7 +3,9 @@
   margin:0;
   box-sizing: border-box;
 }
-
+body{
+  background-color: grey;
+}
 .header_top {
   display: flex;
   justify-content: space-between;
@@ -24,4 +26,29 @@
   font-size: 20px;
   font-weight: normal;
   text-transform: capitalize;
+}
+
+#search{
+  height: 30px;
+  border-color: red;
+  border-radius: 3px;
+}
+
+button{
+  height: 30px;
+  color: red;
+  text-transform: uppercase;
+}
+
+.container{
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 80%;
+  margin: auto;
+}
+
+.card-movie{
+
 }

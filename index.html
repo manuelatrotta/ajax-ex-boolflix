@@ -22,13 +22,37 @@
     </div>
   </header>
   <body>
-  <ul class="list-films">
+    <div class="card-movie">
 
-  </ul>
+    </div>
+    <div class="container">
+      <ul class="list-films"> </ul>
 
-  <ul class="list-telefilms">
+      <ul class="list-telefilms"></ul>
+      <script id="film-template" type="text/x-handlebars-template">
+        <div class="card-movie">
+          {{title}}
+          <ul>
+            <li> image film:  <img src=" https://image.tmdb.org/t/p/w185{{poster_path}}" alt=""> </li>
+            <li>{{type}}</li>
+            <li> Original title:  {{original_title}} </li>
+            <li> Original language:  <img src=" {{original_language}}" alt=""> </li>
+            <li> Vote:   {{vote_average}} </li>
+            <li> specialChars: {{{specialChars}}} </li>
+          </ul>
+        </li>
+        </div>
+    </script>
 
-  </ul>
+
+    <script id="noresult-template" type="text/x-handlebars-template">
+    <li> We are sorry, your search has no results</li>
+    </script>
+
+
+
+    </div>
+
   <!--handlebars-template con attributi richiesti da stampare-->
   <script id="film-template" type="text/x-handlebars-template">
   <li>
