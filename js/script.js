@@ -29,8 +29,14 @@ $(document).ready(function() {
     query();
 
   });
+//al rilascio di pressione del pulsante enter si elabora la funzione query
+  $('input').keypress(function (event) {
+    //enter corrisponde al numero 13
+    if(event.which == 13) {
+      query();
+    }
+  })
 });
-
 //functions--------------
 
 //funzione per resettare la ricerca
@@ -47,7 +53,7 @@ function sendMessageNoResult() {
   var html = template();
   $('.list-films').append(html);
 }
-//funzione ricerca telefilms e films
+//funzione ricerca telefilms e films che richiama le due chiamate distintamente
 function query() {
   var search = $('#search').val();
   resetSearch();
@@ -65,7 +71,7 @@ function query() {
 }
 
 
-//funzione chiamata ricerca film
+//funzione chiamata generica richiamata nella funzione query in cui sono esplicitate le variabili
 function getData(string, api_key, url, type, container) {
 
   $.ajax({
@@ -77,7 +83,7 @@ function getData(string, api_key, url, type, container) {
       language: 'it-IT'
     },
     success: function(data) {
-//se  si ha riscontro con la ricerca quindi il total result è > 0 si stampano i risultati richiamando la funzione printFilms
+//se  si ha riscontro con la ricerca quindi il total result è > 0 si stampano i risultati richiamando la funzione printResults
         if (data.total_results > 0) {
           var results = data.results;
           printResults(type, results);
@@ -98,7 +104,7 @@ function printResults (type, results) {
   var template = Handlebars.compile(source);
   var title;
   var originalTitle;
-//con un ciclo for vediamo tutte le caratteristiche del film (i)
+//con un ciclo for vediamo tutte le caratteristiche dei risultati dei films e dei telefilms (i)
   for (var i = 0; i < results.length; i++) {
     var thisResult = results[i];
     console.log(thisResult);
