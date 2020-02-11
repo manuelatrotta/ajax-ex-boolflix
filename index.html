@@ -22,10 +22,10 @@
     </div>
   </header>
   <body>
-    <div class="container">
-      <ul class="list-films"> </ul>
+    <div class="wrapper">
+      <div class="list-films"> </div>
 <!--handlebars-template con attributi richiesti da stampare-->
-      <ul class="list-telefilms"></ul>
+      <div class="list-telefilms"></div>
         <script id="film-template" type="text/x-handlebars-template">
           <div class="container">
           <div class="poster"> <img src=" https://image.tmdb.org/t/p/w185{{poster_path}}" alt=""></div>
@@ -40,6 +40,7 @@
             <li class="overview"> overview: {{overview}} </li>
           </ul>
           </div>
+      </div>
     </script>
 
 

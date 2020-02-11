@@ -43,12 +43,17 @@ button{
 .container{
   display: flex;
   justify-content: space-around;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
   width: 80%;
   margin: auto;
+  padding: 20px;
 }
+.list-films{
+  display: flex;
+  margin: 10px;
 
+}
 .card-movie{
   justify-content: space-around;
   flex-direction: row;
