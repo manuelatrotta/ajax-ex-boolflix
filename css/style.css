@@ -68,3 +68,12 @@ button{
   background-image: url(../img/image_deafault.png);
   background-size: cover;
   background-repeat: no-repeat;
+}
+.type{
+  width: 187px;
+  border: 1px solid red;
+  background-color: lightgrey;
+  text-align: center;
+  font-weight: bold;
+  color: red;
+}
