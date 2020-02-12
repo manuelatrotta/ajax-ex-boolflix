@@ -11,8 +11,8 @@ body{
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  height: 100px;
-  padding: 40px;
+  height: 70px;
+  padding: 20px;
   background-color: black;
 }
 .title-cardmovie{
@@ -33,13 +33,13 @@ body{
 }
 
 #search{
-  height: 30px;
+  height: 20px;
   border-color: red;
   border-radius: 3px;
 }
 
 button{
-  height: 30px;
+  height: 20px;
   color: red;
   text-transform: uppercase;
 }
@@ -59,8 +59,9 @@ button{
 .list-telefilms{
   display: flex;
   position: relative;
-  margin: 10px;
-
+  overflow-x: scroll;
+  overflow-y: hidden;
+  margin: 20px;
 }
 .card-movie{
   flex-direction: row;
@@ -112,20 +113,4 @@ button{
 
 .list-card{
   list-style: none;
-}
-
-.prev{
-    position: absolute;
-    top: 425px;
-    left: 0;
-    font-size: 40px;
-    cursor: pointer;
-}
-
-.next{
-  position: absolute;
-  top: 425px;
-  right:0;
-  font-size: 40px;
-  cursor: pointer;
 }

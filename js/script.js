@@ -22,8 +22,8 @@
 
 //risultati in base alla ricerca al click del bottone
 $(document).ready(function() {
+
   //variabile di richiesta che deve essere poi data dall'input
-  //var query = 'inception';
   $("button").click(function () {
     var search = $('#search').val();
     query();
