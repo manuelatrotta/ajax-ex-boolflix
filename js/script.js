@@ -22,12 +22,15 @@
 
 //risultati in base alla ricerca al click del bottone
 $(document).ready(function() {
-
+    $('.next').click(
+      function() {
+        clickNext();
+      }
+    );
   //variabile di richiesta che deve essere poi data dall'input
   $("button").click(function () {
     var search = $('#search').val();
     query();
-
   });
 //al rilascio di pressione del pulsante enter si elabora la funzione query
   $('input').keypress(function (event) {
@@ -149,4 +152,35 @@ function printStars(vote) {
     stars = stars + singleStar;
   }
   return stars;
+}
+//funzione che con un click su next permette di girare le immagini dei film e dei telefilm
+function clickNext() {
+//alert('click Next');
+//creazione variabili per le immagini
+  var imageActive = $('.poster');
+  var imageNext = imageActive.next();
+  //per avere continuità è necessario dire che se l'imageActive è ultima allora si toglie la classe 'active' e viene aggiunta alla seguente.
+  if (imageActive.hasClass('last') == true) {
+    imageActive.removeClass('active');
+    $('img.first').addClass('active');
+  //altrimenti se è false imageActive aggiunge classe 'active' e imageNext la rimuove. Ciò permette ciclicità.
+  }else {
+    imageActive.removeClass('active');
+    imageNext.addClass('active');
+  }
+}
+//funzione che con un click su prev permette di girare le immagini dei film e dei telefilm
+function clickPrev() {
+//  alert('click prev');
+  var imageActive = $('.poster');
+  var imagePrev = imageActive.prev();
+  //per avere continuità è necessario dire che se l'imageActive è ultima allora si toglie la classe 'active' e viene aggiunta alla seguente.
+  if (imageActive.hasClass('first') == true) {
+    imageActive.removeClass('active');
+    $('img.last').addClass('active');
+  //altrimenti se è false imageActive aggiunge classe 'active' e imageNext la rimuove. Ciò permette ciclicità.
+  }else {
+    imageActive.removeClass('active');
+    imagePrev.addClass('active');
+  }
 }

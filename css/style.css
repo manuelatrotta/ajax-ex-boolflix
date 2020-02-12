@@ -43,9 +43,12 @@ button{
   color: red;
   text-transform: uppercase;
 }
-.wrapper{
+.slider-wrapper{
   width: 100%;
   overflow: hidden;
+}
+.active {
+  display: inline-block;
 }
 .container{
   display: flex;
@@ -113,4 +116,17 @@ button{
 
 .list-card{
   list-style: none;
+}
+
+.prev, .next {
+  position: absolute;
+  top: 70%;
+  left: 0;
+  transform: translateY(-50%);
+  font-size: 40px;
+  cursor: pointer;
+}
+.next {
+  left: auto;
+  right: 0;
 }

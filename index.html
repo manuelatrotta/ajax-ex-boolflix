@@ -25,13 +25,22 @@
   <!--/header-->
   <body>
     <!--wrapper-->
-    <div class="wrapper">
+    <div class="slider-wrapper">
       <div class="list-films"> </div>
+      <!-- icona prev -->
+        <div class="prev">
+          <i class="fas fa-angle-left"></i>
+        </div>
+        <!-- icona next -->
+        <div class="next">
+          <i class="fas fa-angle-right"></i>
+        </div>
 <!--handlebars-template con attributi richiesti da stampare-->
       <div class="list-telefilms"></div>
+
         <script id="film-template" type="text/x-handlebars-template">
           <div class="container">
-          <div class="poster"> <img src=" https://image.tmdb.org/t/p/w185{{poster_path}}" alt=""></div>
+          <div class="poster active"> <img src=" https://image.tmdb.org/t/p/w185{{poster_path}}" alt=""></div>
            <div class="type"> {{type}} </div>
           <div class="card-movie">
           <ul class="list-card">
