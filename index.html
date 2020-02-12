@@ -24,6 +24,12 @@
   <body>
     <div class="wrapper">
       <div class="list-films"> </div>
+      <div class="prev">
+              <i class="fas fa-angle-left"></i>
+          </div>
+      <div class="next">
+             <i class="fas fa-angle-right"></i>
+         </div>
 <!--handlebars-template con attributi richiesti da stampare-->
       <div class="list-telefilms"></div>
         <script id="film-template" type="text/x-handlebars-template">
@@ -32,7 +38,7 @@
            <div class="type"> {{type}} </div>
           <div class="card-movie">
           <ul class="list-card">
-            <li> title:   {{title}} </li>
+            <li class="title-cardmovie"> title:   {{title}} </li>
             <li> Original title:  {{original_title}} </li>
             <li> Original language:  <img class="flag" src=" {{original_language}}" alt=""> </li>
             <li> Vote:   {{vote_average}} </li>

@@ -15,7 +15,11 @@ body{
   padding: 40px;
   background-color: black;
 }
-
+.title-cardmovie{
+  color: red;
+  font-weight: bold;
+  text-transform: uppercase;
+}
 .logo{
   color: red;
   font-size: 30px;
@@ -40,29 +44,29 @@ button{
   text-transform: uppercase;
 }
 .wrapper{
-
+  width: 100%;
+  overflow: hidden;
 }
 .container{
   display: flex;
   justify-content: space-around;
   flex-direction: column;
   flex-wrap: wrap;
-  width: 80%;
   margin: auto;
   padding: 20px;
 }
 .list-films,
 .list-telefilms{
   display: flex;
+  position: relative;
   margin: 10px;
 
 }
 .card-movie{
-  justify-content: space-around;
   flex-direction: row;
   flex-wrap: wrap;
-
 }
+
 .flag{
   width: 15px;
   height: 15px;
@@ -93,7 +97,10 @@ button{
   width: 187px;
   height: 280px;
   background-color: lightgrey;
-  font-size: 12px;
+  font-size: 15px;
+  padding: 5px;
+  line-height: 20px;
+  overflow: hidden;
 }
 
 .container:hover .card-movie{
@@ -105,5 +112,20 @@ button{
 
 .list-card{
   list-style: none;
-    overflow: hidden;
+}
+
+.prev{
+    position: absolute;
+    top: 425px;
+    left: 0;
+    font-size: 40px;
+    cursor: pointer;
+}
+
+.next{
+  position: absolute;
+  top: 425px;
+  right:0;
+  font-size: 40px;
+  cursor: pointer;
 }
